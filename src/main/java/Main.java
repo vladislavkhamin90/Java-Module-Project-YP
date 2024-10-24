@@ -28,11 +28,8 @@ class Race{
             distance = 24 * speedAuto;
             raceLeader = nameAuto;
         }
-
-
     }
 }
-
 
 
 public class Main {
@@ -54,15 +51,27 @@ public class Main {
             // вложенный цикл для обработки значения переменной скорости
             while (true){
 
-                int speed = scanner.nextInt();
-                if (speed > 0 && speed <=250){
+                // проверка вводимого значения на принадлежность к Integer
+                if(scanner.hasNextInt()){
 
-                    auto = new Auto(name, speed);
-                    race.findLeader(auto.name,auto.speed);
-                    break;
+                    // присвоение вводимого значения переменной скорости
+                    int speed = scanner.nextInt();
 
-                }else{
-                    System.out.println("Неправильная скорость");
+                    // проверка значения на корректность
+                    if ( speed > 0 && speed <=250){
+
+                        // создание экземпляра Auto
+                        auto = new Auto(name, speed);
+                        // вызов функции для выявления лидера
+                        race.findLeader(auto.name,auto.speed);
+                        break;
+
+                    }else{
+                        System.out.println("Значение скорости должно быть от 1 до 250");
+                    }
+                }else {
+                    System.out.println("Введите корректную скорость");
+                    scanner.next();
                 }
             }
         }
